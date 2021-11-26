@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MVVM</title>
+</head>
+
+<body>
+
+    <div id="vue-app">
+        <input type="text" v-model="name">
+        <input type="text" v-model="age">
+        <h1>{{ getHelloWord }}</h1>
+        <button v-on:click="clickBtn">手动改变age变成13</button>
+    </div>
+
+    <script src="./Observer.js"></script>
+    <script src="./Watcher.js"></script>
+    <script src="./Compile.js"></script>
+    <script src="./SimpleVue.js"></script>
+    <script>
+        var vm = new SimpleVue({
+            el: '#vue-app',
+            data: {
+                name: 'simon',
+                age: '12',
+            },
+
+            computed: {
+                getHelloWord: function () {
+                    return this.name + '依赖name的值';
+                }
+            },
+
+            methods: {
+                clickBtn: function (e) {
+                    this.age = '13'
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
